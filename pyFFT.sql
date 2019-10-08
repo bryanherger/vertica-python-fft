@@ -6,7 +6,7 @@ CREATE LIBRARY TransformFunctions AS :libfile DEPENDS '/home/bryan/udx/fft351/li
 CREATE TRANSFORM FUNCTION pyFFT AS NAME 'pyFFTFactory' LIBRARY TransformFunctions;
 
 -- Step 3: Use Functions
-
+-- create a data set of amplitude vs. time
 CREATE TABLE t (a FLOAT, b FLOAT);
 INSERT INTO t VALUES (0,0);
 INSERT INTO t VALUES (0.001,0.141120008);
@@ -25,11 +25,11 @@ INSERT INTO t SELECT a+0.08, 0.0 FROM t;
 INSERT INTO t SELECT a+0.16, 0.0 FROM t;
 INSERT INTO t SELECT a+0.32, 0.0 FROM t;
 INSERT INTO t SELECT a+0.64, 0.0 FROM t;
---INSERT INTO t SELECT a+320, 0.0 FROM t;
 UPDATE t SET b = sin(40 * 2 * 3.14 * a) + 0.5 * sin(90 * 2 * 3.14 * a);
 SELECT * FROM t;
+-- Run the FFT and output amplitude vs. frequency
 SELECT pyFFT(a, b) OVER() FROM t;
 
+-- Step 4: Clean up
 DROP TABLE t;
-
 DROP LIBRARY TransformFunctions CASCADE;
