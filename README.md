@@ -9,3 +9,4 @@ https://www.softwarecollections.org/en/scls/rhscl/rh-python35/
 
 Activate the virtual environment, then run pip to install and/or update pip, setuptools, wheel, numpy.  Edit the SQL to point to the site-packages of this virtualenv, and you should be able to run the SQL with vsql.
 
+For more info and an example usage, please see the blog post at https://www.vertica.com/blog/extending-vertica-with-python-functions-adding-numpy-fft-as-a-udx/
