@@ -24,6 +24,11 @@ class pyFFT(vertica_sdk.TransformFunction):
         s = np.array(asig)
         server_interface.log("pyFFT Stats(1):"+str(rc)+","+str(s.size))
         fft = np.fft.fft(s)
+        T = tsig[1] - tsig[0]  # sampling interval
+        N = s.size
+        server_interface.log("pyFFT Stats(2):"+str(T)+","+str(N))
+        # 1/T = frequency
+        f = np.linspace(0, 1 / T, N)
         for i in range(N // 2):
             output.setFloat(0, f[i//2])
             output.setFloat(1, np.abs(fft)[i // 2])

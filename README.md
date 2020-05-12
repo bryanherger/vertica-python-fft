@@ -3,9 +3,6 @@ A Python UDTF for Vertica that implements Numpy Fast Fourier Transform (FFT)
 
 What's included: the Python library and a sample SQL to load and test the library.
 
-What's NOT included: you'll need to create a Python 3.5.x virtualenv since that is the version Vertica uses.  CentOS 7 defaults to Python 3.6.x, so you'll need to install a compatible 3.5.x release.  I followed the directions here to install on CentOS 7:
+What's NOT included: Vertica only ships with a basic set of site packages, not including numpy.  You can install numpy into Vertica's Python environment by running the following command on all nodes:
 
-https://www.softwarecollections.org/en/scls/rhscl/rh-python35/
-
-Activate the virtual environment, then run pip to install and/or update pip, setuptools, wheel, numpy.  Edit the SQL to point to the site-packages of this virtualenv, and you should be able to run the SQL with vsql.
-
+sudo /opt/vertica/oss/python3/bin/python3 -m pip install numpy

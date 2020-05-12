@@ -1,6 +1,7 @@
 -- Step 1: Create library
+-- be sure to install numpy into all nodes of your Vertica cluster as described in the README
 \set libfile '\'/home/bryan/udx/pyFFT.py\''
-CREATE LIBRARY TransformFunctions AS :libfile DEPENDS '/home/bryan/udx/fft351/lib/python3.5/site-packages/' LANGUAGE 'Python';
+CREATE LIBRARY TransformFunctions AS :libfile LANGUAGE 'Python';
 
 -- Step 2: Create functions
 CREATE TRANSFORM FUNCTION pyFFT AS NAME 'pyFFTFactory' LIBRARY TransformFunctions;
